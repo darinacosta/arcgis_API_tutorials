@@ -1,4 +1,4 @@
-//This is a simple script to illustrate the basic structure of the AMD version of the ArcGIS Javascript API.
+/*This is a simple script to illustrate the basic structure of the AMD version of the ArcGIS Javascript API.
 
 API version: 3.9
 Author: Darin Joseph Acosta
