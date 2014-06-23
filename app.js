@@ -1,6 +1,9 @@
-/*This is a simple script to illustrate the basic structure of the AMD version of the ArcGIS Javascript API.
+/*
+This is a simple script to illustrate the basic structure of the AMD version of the ArcGIS Javascript API. 
+The user is able to add styled point graphics to the map contained in the #map DOM element and clear them from 
+the map by clicking the #clear element.
 
-API version: 3.9
+ArcGIS Javascript API version: 3.9
 Author: Darin Joseph Acosta
 Date: June 2014
 */
@@ -40,7 +43,7 @@ require(["esri/map",
 
   /*
   Now it's time to initialize a new map. The first argument in the method contains 
-  the id of the element within the DOM that the map will inhabit. The second argument
+  the id of the element within the DOM that the map will inhabit (#map). The second argument
   is a JSON containing applicable map characteristics. 
 
   To emphasize: the Map object is being pulled from the "esri/map" module.
