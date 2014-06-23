@@ -23,7 +23,7 @@ require(["esri/map",
   The second argument of the "require()" function is an anonymous callback function.
   The arguments within this function are hooks which allow the application to access
   the code contained in the modules. The hooks should be listed in the same order that 
-  the modules are required. These hooks can be given any name, though ESRI does provide
+  the modules are required. These hooks can be given any name, though ESRI provides
   naming conventions in their documentation. 
 
   Note: the "dojo/domReady!" module does not need to be passed into the callback function.
