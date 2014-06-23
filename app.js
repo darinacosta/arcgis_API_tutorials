@@ -1,7 +1,8 @@
 /*
-This is a simple script to illustrate the basic structure of the AMD version of the ArcGIS Javascript API. 
-The user is able to add styled point graphics to the map contained in the #map DOM element and clear them from 
-the map by clicking the #clear element.
+This is a simple script to illustrate the AMD format of the ArcGIS Javascript API. 
+When run in a browser, the user of this app is able to add styled point graphics to 
+a map embedded in the #map DOM element, and clear these points from the map by 
+clicking the #clear element.
 
 ArcGIS Javascript API version: 3.9
 Author: Darin Joseph Acosta
