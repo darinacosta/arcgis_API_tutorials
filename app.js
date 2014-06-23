@@ -56,14 +56,17 @@ require(["esri/map",
 
   /*
   The following code illustrates a few simple functions that the application
-  can use through the required modules. Notice that any instantiated object shares the
-  name as an argument in the anonymous callback function.
+  can use through the required modules. Notice that instantiated objects share 
+  the same names as the arguments in the anonymous callback function that are 
+  associated with the modules.
   */
 
   map.on("load", function(){
     CreateToolbar(map);
   });
 
+  /*Draw is an object passed through the "esri/toolbars/draw" module to the anonymous
+  callback function.*/
   function CreateToolbar(map) {
     var toolbar = new Draw(map);
     toolbar.activate(Draw.POINT, {  
@@ -74,7 +77,8 @@ require(["esri/map",
 
   on(dom.byId("clear"), "click", function(evnt){
     map.graphics.clear();; });
-
+    
+  /*SimpleMarkerSymbol belongs to the "esri/symbols/SimpleMarkerSymbol" module*/
   function AddToMap(event) {
     var symbol = new SimpleMarkerSymbol();
     symbol.setSize(60);
