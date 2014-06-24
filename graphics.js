@@ -14,6 +14,8 @@ require([
   "esri/graphic",
   "esri/symbols/SimpleMarkerSymbol",
   "esri/symbols/SimpleLineSymbol",
+  "esri/symbols/SimpleFillSymbol",
+  "esri/Color",
 
   "dojo/domReady!",
   "esri/geometry"], 
@@ -27,10 +29,12 @@ require([
     Polyline, 
     Polygon,
 
-    //Graphic Hooks
+    //Graphic & Style Hooks
     Graphic,
     SimpleMarkerSymbol,
-    SimpleLineSymbol
+    SimpleLineSymbol,
+    SimpleFillSymbol,
+    Color
 
   ) {
   
@@ -51,15 +55,23 @@ require([
       //Polyline Graphic
       var polyline = new Polyline();
       var path = [new Point(-106.6, 35.1107), 
-                  new Point(-106.5, 35.1107),
-                  new Point(-106.5, 35.1)];
+                  new Point(-106.59, 35.1107),
+                  new Point(-106.59, 35.1)];
       polyline.addPath(path);
       var polylineSymbol = new SimpleLineSymbol();
       var polylineGraphic = new Graphic(polyline, polylineSymbol)
       graphicsArray.push(polylineGraphic);
 
-      //Polygon Graphic
+     //Polygon Graphic
       var polygon = new Polygon();
+      var ring = [[-106.6, 35.11], 
+                  [-106.62, 35.1],
+                  [-106.65, 35.1],
+                  [-106.6, 35.11]];
+      polygon.addRing(ring);
+      var fillSymbol = new SimpleFillSymbol().setColor(new Color([235, 0, 0, .25]));
+      var polygonGraphic = new Graphic(polygon, fillSymbol);
+      graphicsArray.push(polygonGraphic);
     }
     
     generateGraphicsArray();
@@ -71,5 +83,4 @@ require([
 
   
 });
- 
  
