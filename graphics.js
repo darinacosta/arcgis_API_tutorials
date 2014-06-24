@@ -1,4 +1,3 @@
-
 var map;
 var graphicsArray = [];
 
@@ -41,20 +40,29 @@ require([
       zoom: 13
     });
 
-    var point = new Point(-106.61, 35.1107);
-    var markerSymbol = new SimpleMarkerSymbol();
-    var pointGraphic = new Graphic(point, markerSymbol)
-    graphicsArray.push(pointGraphic);
+    function generateGraphicsArray(){
 
-    var polyline = new Polyline();
-    var path = [new Point(-106.6, 35.1107), 
-                new Point(-106.5, 35.1107),
-                new Point(-106.5, 35.1)];
-    polyline.addPath(path);
-    var lineSymbol = new SimpleLineSymbol();
-    var lineGraphic = new Graphic(polyline, lineSymbol)
-    graphicsArray.push(lineGraphic);
+      //Point Graphic
+      var point = new Point(-106.61, 35.1107);
+      var pointSymbol = new SimpleMarkerSymbol();
+      var pointGraphic = new Graphic(point, pointSymbol)
+      graphicsArray.push(pointGraphic);
+
+      //Polyline Graphic
+      var polyline = new Polyline();
+      var path = [new Point(-106.6, 35.1107), 
+                  new Point(-106.5, 35.1107),
+                  new Point(-106.5, 35.1)];
+      polyline.addPath(path);
+      var polylineSymbol = new SimpleLineSymbol();
+      var polylineGraphic = new Graphic(polyline, polylineSymbol)
+      graphicsArray.push(polylineGraphic);
+
+      //Polygon Graphic
+      var polygon = new Polygon();
+    }
     
+    generateGraphicsArray();
     map.on("load", function(){
       for (i = 0; i < graphicsArray.length; ++i){
         map.graphics.add(graphicsArray[i]) 
@@ -63,4 +71,5 @@ require([
 
   
 });
+ 
  
