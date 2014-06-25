@@ -10,12 +10,13 @@ require([
   "esri/geometry/Polyline",
   "esri/geometry/Polygon",
 
-  //Graphic Modules
+  //Graphic & Style Modules
   "esri/graphic",
   "esri/symbols/SimpleMarkerSymbol",
   "esri/symbols/SimpleLineSymbol",
   "esri/symbols/SimpleFillSymbol",
   "esri/Color",
+  "esri/InfoTemplate",
 
   "dojo/domReady!",
   "esri/geometry"], 
@@ -34,7 +35,8 @@ require([
     SimpleMarkerSymbol,
     SimpleLineSymbol,
     SimpleFillSymbol,
-    Color
+    Color,
+    InfoTemplate
 
   ) {
   
@@ -46,11 +48,27 @@ require([
 
     function generateGraphicsArray(){
 
-      //Point Graphic
-      var point = new Point(-106.61, 35.1107);
-      var pointSymbol = new SimpleMarkerSymbol();
-      var pointGraphic = new Graphic(point, pointSymbol)
+      //Begin Point Graphic
+
+      //Initialize geographic point location
+      var point = new Point(-106.61, 35.1107); 
+
+      //Initialize style that will be applied to point   
+      var pointSymbol = new SimpleMarkerSymbol(); 
+
+      //Initialize attributes that will be applied to point 
+      var pointAttributes = {city: "Albuquerque",  
+                             state: "New Mexico"};
+
+      //Initialize pop-up template in which the point attributes will appear when clicked
+      var pointInfoTemplate = new InfoTemplate("Albuquerque Test"); 
+
+      //Instantiate a new graphic class and pass the point, style, and attributes as an argument
+      //Set the info template graphic that will appear when the point is clicked
+      var pointGraphic = new Graphic(point, pointSymbol,     
+        pointAttributes).setInfoTemplate(pointInfoTemplate)
       graphicsArray.push(pointGraphic);
+
 
       //Polyline Graphic
       var polyline = new Polyline();
