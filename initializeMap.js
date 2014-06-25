@@ -43,7 +43,7 @@ require(["esri/map",
            on) {
 
   /*
-  Now it's time to initialize a new map. The first argument in the method contains 
+  Now it's time to initialize a new map. The first argument in the constructor contains 
   the id of the element within the DOM that the map will inhabit (#map). The second argument
   is a JSON containing applicable map characteristics. 
 

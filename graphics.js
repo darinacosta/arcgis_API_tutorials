@@ -40,64 +40,72 @@ require([
 
   ) {
   
-    map = new Map("map", {
-      basemap: "topo",
-      center: [-106.61, 35.1107], // longitude, latitude
-      zoom: 13
-    });
+  map = new Map("map", {
+    basemap: "topo",
+    center: [-106.61, 35.1107], // longitude, latitude
+    zoom: 13
+  });
 
-    function generateGraphicsArray(){
+  function generateGraphicsArray(){
 
-      //Begin Point Graphic
+    //Begin Point Graphic
 
-      //Initialize geographic point location
-      var point = new Point(-106.61, 35.1107); 
+    //Initialize geographic point location
+    var point = new Point(-106.61, 35.1107); 
 
-      //Initialize style that will be applied to point   
-      var pointSymbol = new SimpleMarkerSymbol(); 
+    //Initialize style that will be applied to point   
+    var pointSymbol = new SimpleMarkerSymbol(); 
 
-      //Initialize attributes that will be applied to point 
-      var pointAttributes = {city: "Albuquerque",  
-                             state: "New Mexico"};
+    //Initialize attributes that will be applied to point 
+    var pointAttributes = {city: "Albuquerque",  
+                           state: "New Mexico"};
 
-      //Initialize pop-up template in which the point attributes will appear when clicked
-      var pointInfoTemplate = new InfoTemplate("Albuquerque Test"); 
+    //Initialize pop-up template in which the point attributes will appear when clicked
+    var pointInfoTemplate = new InfoTemplate("Albuquerque"); 
 
-      //Instantiate a new graphic class and pass the point, style, and attributes as an argument
-      //Set the info template graphic that will appear when the point is clicked
-      var pointGraphic = new Graphic(point, pointSymbol,     
-        pointAttributes).setInfoTemplate(pointInfoTemplate)
-      graphicsArray.push(pointGraphic);
+    //Instantiate a new graphic class and pass the point, style, and attributes as an argument to the constructor
+    //Set the info template graphic that will appear when the point is clicked
+    var pointGraphic = new Graphic(point, pointSymbol,     
+      pointAttributes).setInfoTemplate(pointInfoTemplate);
+
+    //Add point to graphics array
+    graphicsArray.push(pointGraphic);
 
 
-      //Polyline Graphic
-      var polyline = new Polyline();
-      var path = [new Point(-106.6, 35.1107), 
-                  new Point(-106.59, 35.1107),
-                  new Point(-106.59, 35.1)];
-      polyline.addPath(path);
-      var polylineSymbol = new SimpleLineSymbol();
-      var polylineGraphic = new Graphic(polyline, polylineSymbol)
-      graphicsArray.push(polylineGraphic);
+    //Polyline Graphic
+    var polyline = new Polyline();
+    var path = [new Point(-106.6, 35.1107), 
+                new Point(-106.59, 35.1107),
+                new Point(-106.59, 35.1)];
+    polyline.addPath(path);
+    var polylineSymbol = new SimpleLineSymbol();
+    var polylineGraphic = new Graphic(polyline, polylineSymbol);
+    graphicsArray.push(polylineGraphic);
 
-     //Polygon Graphic
-      var polygon = new Polygon();
-      var ring = [[-106.6, 35.11], 
-                  [-106.62, 35.1],
-                  [-106.65, 35.1],
-                  [-106.6, 35.11]];
-      polygon.addRing(ring);
-      var fillSymbol = new SimpleFillSymbol().setColor(new Color([235, 0, 0, .25]));
-      var polygonGraphic = new Graphic(polygon, fillSymbol);
-      graphicsArray.push(polygonGraphic);
+
+   //Polygon Graphic
+    var polygon = new Polygon();
+    var ring = [[-106.6, 35.11], 
+                [-106.62, 35.1],
+                [-106.65, 35.1],
+                [-106.6, 35.11]];
+    polygon.addRing(ring);
+    var fillSymbol = new SimpleFillSymbol().setColor(new Color([235, 0, 0, .25]));
+    var polygonGraphic = new Graphic(polygon, fillSymbol);
+    graphicsArray.push(polygonGraphic);
+  }
+  
+  generateGraphicsArray();
+  map.on("load", function(){
+    for (i = 0; i < graphicsArray.length; ++i){
+      /*Add graphics from the graphics array to the map graphics layer.
+      Graphics can be removed individually using the remove() function,
+      or can be removed entirely using the clear() function. Refer to 
+      the initializeMap.js file in this series*/
+      map.graphics.add(graphicsArray[i]);
+      point.on("click", console.log("tetst!!!ED")) 
     }
-    
-    generateGraphicsArray();
-    map.on("load", function(){
-      for (i = 0; i < graphicsArray.length; ++i){
-        map.graphics.add(graphicsArray[i]) 
-      }
-    });
+  });
 
   
 });
